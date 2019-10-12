@@ -80,68 +80,88 @@ int MediaDecomposer::decompose(const char *mediaFilePath, const char *pcmFilePat
 
 
 int execAudioDecode(AVFormatContext * fmtCtx,int index,FILE *pcmFilePtr) {
-    int error = 0;
     AVStream *audioStream = NULL;
     AVCodec *codec = NULL;
     AVCodecContext *audioCodecCtx = NULL;
+    
     int64_t outChannelLayout = AV_CH_LAYOUT_STEREO;
     AVSampleFormat outSampleFmt = AV_SAMPLE_FMT_S16;
-    int outSampleRate = 0;
+    int outSampleRate = 44100;
+    int outNumberChannels = 0;
+    int outLinesize;
+    int outBufferSize = 0;
+    int outNumberSamples, maxOutNumberSamples;
+    uint8_t **outBuffer = NULL;
+    
     SwrContext *swrCtx = NULL;
     AVFrame *frame = NULL;
     AVPacket *packet = NULL;
-    int outBufferSize = 0;
-    uint8_t *buffer = NULL;
+    int ret = 0;
     int idx = 0;
     
     audioStream = fmtCtx->streams[index];
     codec = avcodec_find_decoder(audioStream->codecpar->codec_id);
     if (codec == NULL) {
-        printf("cannot find decoder");
-        error = -1;
-        goto exitPoint;
+        fprintf(stderr,"cannot find decoder");
+        ret = -1;
+        goto end;
     }
     audioCodecCtx = avcodec_alloc_context3(codec);
     avcodec_parameters_to_context(audioCodecCtx, audioStream->codecpar);
-    error = avcodec_open2(audioCodecCtx, codec, NULL);
-    if (error < 0) {
-        printf("open video codec fail");
-        goto exitPoint;
+    ret = avcodec_open2(audioCodecCtx, codec, NULL);
+    if (ret < 0) {
+        fprintf(stderr,"open video codec fail");
+        goto end;
     }
     
-//    outSampleRate = audioCodecCtx->sample_rate;
-    outSampleRate = 44100;
     swrCtx = swr_alloc_set_opts(NULL,
                                 outChannelLayout, outSampleFmt, outSampleRate,
                                 audioCodecCtx->channel_layout, audioCodecCtx->sample_fmt, audioCodecCtx->sample_rate,
                                 0, NULL);
     swr_init(swrCtx);
     
+    maxOutNumberSamples = outNumberSamples = (int)av_rescale_rnd(audioCodecCtx->frame_size, outSampleRate, audioCodecCtx->sample_rate, AV_ROUND_UP);
+    fprintf(stdout,"max out nb samples %d  ",maxOutNumberSamples);
+    
+    outNumberChannels = av_get_channel_layout_nb_channels(outChannelLayout);
+    ret = av_samples_alloc_array_and_samples(&outBuffer, &outLinesize, outNumberChannels, outNumberSamples, outSampleFmt, 0);
+    if (ret < 0) {
+        printf("alloc out buffer fail");
+        goto end;
+    }
     packet = av_packet_alloc();
     frame = av_frame_alloc();
-    outBufferSize = av_samples_get_buffer_size(NULL,
-                                               av_get_channel_layout_nb_channels(outChannelLayout),
-                                               audioCodecCtx->frame_size,outSampleFmt,1);
-    buffer = (uint8_t *)av_malloc(outBufferSize);
     while (av_read_frame(fmtCtx, packet) == 0) {
         if (packet->stream_index != index ) continue;
         if (0 != avcodec_send_packet(audioCodecCtx, packet)) {
             printf("send packet error");
-            error = -3;
-            goto exitPoint;
+            ret = -3;
+            goto end;
         }
         while (0 == avcodec_receive_frame(audioCodecCtx, frame)) {
-            swr_convert(swrCtx,
-                        &buffer, frame->nb_samples,
+            outNumberSamples = (int)av_rescale_rnd(swr_get_delay(swrCtx, frame->sample_rate) + frame->nb_samples, outSampleRate, frame->sample_rate, AV_ROUND_UP);
+            fprintf(stdout, "out nb samples:%d   ",outNumberSamples);
+            if (outNumberSamples > maxOutNumberSamples) {
+                av_freep(&outBuffer[0]);
+                ret = av_samples_alloc(outBuffer, &outLinesize, outNumberChannels, outNumberSamples, outSampleFmt, 1);
+                maxOutNumberSamples = outNumberSamples;
+            }
+            ret = swr_convert(swrCtx,
+                        outBuffer, outNumberSamples,
                         (const uint8_t **)frame->data, frame->nb_samples);
-            printf("index:%5d\t  pts:%lld frame size:%d\n",idx,frame->pts,frame->pkt_size);
-            fwrite(buffer, 1, outBufferSize, pcmFilePtr);
+            if (ret < 0) {
+                fprintf(stderr, "Error while converting\n");
+                goto end;
+            }
+            outBufferSize = av_samples_get_buffer_size(&outLinesize, outNumberChannels, ret, outSampleFmt, 1);
+            fprintf(stdout,"index:%5d\t  pts:%lld frame size:%d\n",idx,frame->pts,frame->pkt_size);
+            fwrite(outBuffer[0], 1, outBufferSize, pcmFilePtr);
             idx++;
         }
         av_packet_unref(packet);
     }
     
-exitPoint:
+end:
     if (audioCodecCtx)
         avcodec_free_context(&audioCodecCtx);
     if (swrCtx)
@@ -150,9 +170,10 @@ exitPoint:
         av_packet_free(&packet);
     if (frame)
         av_frame_free(&frame);
-    if (buffer)
-        av_free(buffer);
-
-    return error;
+    if (outBuffer)
+        av_freep(&outBuffer[0]);
+    av_freep(&outBuffer);
+    
+    return ret;
     
 }
