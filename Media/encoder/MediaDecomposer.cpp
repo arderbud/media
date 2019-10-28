@@ -85,7 +85,7 @@ int execAudioDecode(AVFormatContext * fmtCtx,int index,FILE *pcmFilePtr) {
     AVCodecContext *audioCodecCtx = NULL;
     
     int64_t outChannelLayout = AV_CH_LAYOUT_STEREO;
-    AVSampleFormat outSampleFmt = AV_SAMPLE_FMT_S16;
+    AVSampleFormat outSampleFmt = AV_SAMPLE_FMT_S16; // interleaved
     int outSampleRate = 44100;
     int outNumberChannels = 0;
     int outLinesize;

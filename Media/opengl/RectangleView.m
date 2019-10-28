@@ -54,17 +54,17 @@ NSString *const fragmentShaderSource = SHADER_STRING
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        if (![self initOpenGLContext:frame.size])
+        if (![self configureOpenGLESContext:frame.size])
             return nil;
-        if (![self initShader])
+        if (![self configureGLProgram])
             return nil;
-        [self provideVertexData];
+        [self inputVertexData];
     }
     return self;
 }
 
 // https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/WorkingwithEAGLContexts/WorkingwithEAGLContexts.html#//apple_ref/doc/uid/TP40008793-CH103-SW8
-- (BOOL)initOpenGLContext:(CGSize)size {
+- (BOOL)configureOpenGLESContext:(CGSize)size {
     CAEAGLLayer *eaglLayer;
     GLint  renderWidth;
     GLint  renderHeight;
@@ -83,14 +83,14 @@ NSString *const fragmentShaderSource = SHADER_STRING
     glGenFramebuffers(1, &_frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
     
-    glGenRenderbuffers(1, &_colorRenderBuffer); // color render buffer
+    glGenRenderbuffers(1, &_colorRenderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _colorRenderBuffer);
     [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:eaglLayer];
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorRenderBuffer);
     
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &renderWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &renderHeight);
-    glViewport(0, 0, size.width, size.height);
+//    glViewport(0, 0, size.width, size.height);
     
     status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if (status != GL_FRAMEBUFFER_COMPLETE)
@@ -107,7 +107,7 @@ NSString *const fragmentShaderSource = SHADER_STRING
     return [CAEAGLLayer class];
 }
 
-- (BOOL)initShader {
+- (BOOL)configureGLProgram {
     const GLchar *vertexSource = (GLchar *)vertexShaderSource.UTF8String;
     const GLchar *fragmentSource = (GLchar *)fragmentShaderSource.UTF8String;
     GLuint vertexShader,fragmentShader = 0;
@@ -154,7 +154,7 @@ exitPoint:
     return success;
 }
 
-- (void)provideVertexData {
+- (void)inputVertexData {
     
     GLint  posAttribIndex,colAttribIndex;
     GLfloat vertices[] = {
@@ -173,7 +173,6 @@ exitPoint:
     
     // vbo start --------------------------------->
     glGenBuffers(1, &_VBO);
-    
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // buffer: 80 bytes
     
@@ -202,6 +201,7 @@ exitPoint:
     glUseProgram(_shaderProgram);
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
@@ -216,7 +216,7 @@ exitPoint:
     glDeleteBuffers(1, &_VBO);
     glDeleteBuffers(1, &_EBO);
     
-    glDeleteRenderbuffers(1, &_renderBuffer);
+    glDeleteRenderbuffers(1, &_colorRenderBuffer);
     glDeleteFramebuffers(1, &_frameBuffer);
     
 }
