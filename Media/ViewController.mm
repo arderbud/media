@@ -74,8 +74,9 @@ static void * decodeRoutine(void *arg) {
     // Do any additional setup after loading the view.
     
     
+    /*
     pthread_t tid;
-    pthread_create(&tid, NULL, decodeRoutine, NULL);
+    pthread_create(&tid, NULL, decodeRoutine, NULL);*/
     /*
     NSString *flvPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"flv"];
     AVDataProvider *provider = [[AVDataProvider alloc] initWithFileURL:[NSURL URLWithString:flvPath]];
