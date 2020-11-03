@@ -226,7 +226,7 @@ enum AVPixelFormat {
      */
     AV_PIX_FMT_MMAL,
 
-    AV_PIX_FMT_D3D11VA_VLD,  ///< HW decoding through Direct3D11 via old API, Picture.data[3] contains a ID3D11VideoDecoderOutputView pointer
+    AV_PIX_FMT_D3D11VA_VLD,  ///< HW decoding through Direct3D11 via old API, Picture.data[3] contains a ID3D11MediaDecoderOutputView pointer
 
     /**
      * HW acceleration through CUDA. data[i] contain CUdeviceptr pointers

@@ -16,7 +16,8 @@
 #import "AudioPlayerViewController.h"
 #import "RectangleView.h"
 #import "GeometryViewController.h"
-#import "VideoDecoder.h"
+#import "MediaDecoder.h"
+#import "MediaPlayerViewController.h"
 #import "AVDataProvider.h"
 
 
@@ -38,30 +39,6 @@ static void CheckStatus(OSStatus status,NSString *message,BOOL fatal) {
     
 }
 
-static void * decodeRoutine(void *arg) {
-    /*
-    NSArray *frames;
-    NSString *flvPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"flv"];
-    VideoDecoder *decoder = [[VideoDecoder alloc] initWithFileURL:[NSURL URLWithString:flvPath]];
-    [decoder openFileWithOptions:nil error:nil];
-    
-    do {
-        frames = [decoder decodeFramesWithMinDuration:CGFLOAT_MAX error:NULL];
-    } while (frames.count > 0);*/
-    
-    NSString *flvPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"flv"];
-    AVDataProvider *provider = [[AVDataProvider alloc] initWithFileURL:[NSURL URLWithString:flvPath]];
-    [provider openFileWithOptions:nil Error:nil];
-    SInt16 *buffer = (SInt16 *)calloc(2048, 2);
-    int i = 0;
-    do {
-        [provider fillAudioData:buffer nbFrames:1024 nbChannels:2];
-        i++;
-        NSLog(@"i:%d",i);
-        usleep(100);
-    } while (i < 2000);
-    return  NULL;
-}
 
 @interface ViewController ()
 
@@ -73,22 +50,8 @@ static void * decodeRoutine(void *arg) {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
     
-    /*
-    pthread_t tid;
-    pthread_create(&tid, NULL, decodeRoutine, NULL);*/
-    /*
-    NSString *flvPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"flv"];
-    AVDataProvider *provider = [[AVDataProvider alloc] initWithFileURL:[NSURL URLWithString:flvPath]];
-    [provider openFileWithOptions:nil Error:nil];
-    SInt16 *buffer = (SInt16 *)calloc(2048, 2);
-    int i = 0;
-    do {
-        [provider fillAudioData:buffer nbFrames:1024 nbChannels:2];
-        i++;
-        NSLog(@"i:%d",i);
-        usleep(100);
-    } while (i < 2000);*/
     self.title = @"MediaDemo";
 }
 
@@ -120,6 +83,10 @@ static void * decodeRoutine(void *arg) {
 - (IBAction)openGL:(id)sender {
     GeometryViewController *triangleVC = [[GeometryViewController alloc] init];
     [self.navigationController pushViewController:triangleVC animated:YES];
+}
+- (IBAction)playerAction:(id)sender {
+    MediaPlayerViewController *playerVC = [[MediaPlayerViewController alloc] init];
+    [self.navigationController pushViewController:playerVC animated:YES];
 }
 
 

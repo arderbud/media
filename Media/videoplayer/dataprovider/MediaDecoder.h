@@ -1,5 +1,5 @@
 //
-//  VideoDecoder.h
+//  MediaDecoder.h
 //  Media
 //
 //  Created by arderbud on 2019/9/27.
@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger,FrameType) {
 #define NET_WORK_STREAM_RETRY_TIME                  3
 #endif
 
-@interface VideoDecoder : NSObject
+@interface MediaDecoder : NSObject
 
 // File info
 @property (nonatomic, strong, readonly) NSURL *fileURL;

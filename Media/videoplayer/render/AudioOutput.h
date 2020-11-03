@@ -13,10 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol AudioOutputDataSource <NSObject>
 
 // interleaved 
-- (NSInteger)fillAudioData:(UInt8 *)buffer
-            bytesPerSample:(UInt8)bytesPerSample
-                  nbFrames:(UInt32)frames
-                nbChannels:(UInt32)channels;
+- (void)fillAudioData:(SInt16 *)outData nbFrames:(UInt32)nbFrames nbChannels:(UInt32)nbChannels;
 
 @end
 

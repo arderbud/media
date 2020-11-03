@@ -195,10 +195,14 @@ exitPoint:
 }
 
 - (void)draw {
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
     
     glUseProgram(_shaderProgram);
+    
+    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    CGFloat scale = UIScreen.mainScreen.scale;
+    glViewport(0, 0, CGRectGetWidth(self.bounds) * scale, CGRectGetHeight(self.bounds) * scale);
     glBindVertexArray(_VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     
@@ -218,6 +222,10 @@ exitPoint:
     
     glDeleteRenderbuffers(1, &_colorRenderBuffer);
     glDeleteFramebuffers(1, &_frameBuffer);
+    
+}
+
+- (void)drawRect:(CGRect)rect {
     
 }
 @end

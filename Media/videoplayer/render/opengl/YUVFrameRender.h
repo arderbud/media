@@ -7,7 +7,7 @@
 //
 
 #import "RenderPipeline.h"
-#import "VideoDecoder.h"
+#import "MediaDecoder.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

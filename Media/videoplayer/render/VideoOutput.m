@@ -161,10 +161,11 @@ static const NSInteger kMaxOperationQueueCount = 3;
 - (GLuint)genYUVTexture:(VideoFrame *)frame width:(int)width height:(int)height {
     GLuint frameBuffer;
     GLuint outputTexture;
-    
+    // 生成framebuffer 用于接收pipeline输出
     glGenFramebuffers(1, &frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
     
+    // 具体输出到一个texture
     glGenTextures(1, &outputTexture);
     glBindTexture(GL_TEXTURE_2D, outputTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -173,7 +174,6 @@ static const NSInteger kMaxOperationQueueCount = 3;
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, outputTexture, 0);
-    
     glBindTexture(GL_TEXTURE_2D, 0);
     
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);

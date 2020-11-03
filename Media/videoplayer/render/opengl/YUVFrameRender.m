@@ -51,7 +51,7 @@ static NSString *const yuvFragmentShaderString = SHADER_STRING
     return self;
 }
 
-
+// prepare data
 - (void)inputVideoFrame:(VideoFrame *)frame width:(float)width height:(float)height {
 
     glViewport(0, 0, width, height);
@@ -99,6 +99,7 @@ static NSString *const yuvFragmentShaderString = SHADER_STRING
 
 }
 
+// 
 - (void)draw {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

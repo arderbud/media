@@ -60,7 +60,7 @@ typedef struct AVD3D11VAContext {
     /**
      * D3D11 decoder object
      */
-    ID3D11VideoDecoder *decoder;
+    ID3D11MediaDecoder *decoder;
 
     /**
       * D3D11 VideoContext
@@ -80,7 +80,7 @@ typedef struct AVD3D11VAContext {
     /**
      * The array of Direct3D surfaces used to create the decoder
      */
-    ID3D11VideoDecoderOutputView **surface;
+    ID3D11MediaDecoderOutputView **surface;
 
     /**
      * A bit field configuring the workarounds needed for using the decoder

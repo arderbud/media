@@ -58,7 +58,7 @@ struct dxva_context {
     /**
      * DXVA2 decoder object
      */
-    IDirectXVideoDecoder *decoder;
+    IDirectXMediaDecoder *decoder;
 
     /**
      * DXVA2 configuration used to create the decoder

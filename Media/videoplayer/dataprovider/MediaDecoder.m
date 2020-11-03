@@ -1,12 +1,12 @@
 //
-//  VideoDecoder.m
+//  MediaDecoder.m
 //  Media
 //
 //  Created by arderbud on 2019/9/27.
 //  Copyright © 2019 arderbud. All rights reserved.
 //
 
-#import "VideoDecoder.h"
+#import "MediaDecoder.h"
 #include "libavformat/avformat.h"
 #include "libswscale/swscale.h"
 #include "libswresample/swresample.h"
@@ -73,7 +73,7 @@ static void AVStreamGetFpsAndTimebase(AVStream *st,AVCodecContext *avCtx, double
 
 @end
 
-@interface VideoDecoderContext : NSObject
+@interface MediaDecoderContext : NSObject
 @property (nonatomic, assign) int connectionRetry;
 @property (nonatomic, assign) int totalVideoFrameCount;
 @property (nonatomic, assign) float totalAudioDuration;
@@ -94,14 +94,14 @@ static void AVStreamGetFpsAndTimebase(AVStream *st,AVCodecContext *avCtx, double
 @property (nonatomic, assign) int decodePosition;
 @end
 
-@implementation VideoDecoderContext
+@implementation MediaDecoderContext
 
 @end
 
 
 
-@interface VideoDecoder ()
-@property (nonatomic, strong) VideoDecoderContext *decoderCtx;
+@interface MediaDecoder ()
+@property (nonatomic, strong) MediaDecoderContext *decoderCtx;
 @end
 
 
@@ -110,7 +110,7 @@ NSString *const ProbeSizeKey = @"ProbeSizeKey";
 NSString *const MaxAnalyzeDuraionArrayKey = @"MaxAnalyzeDuraionArrayKey";
 NSString *const FpsProbeSizeEnableKey = @"FpsProbeSizeEnableKey";
 
-@implementation VideoDecoder {
+@implementation MediaDecoder {
     void *                      _swrBuffer;
     NSUInteger                  _swrBufferSize;
 }
@@ -137,12 +137,12 @@ NSString *const FpsProbeSizeEnableKey = @"FpsProbeSizeEnableKey";
 static int interruptCallback(void *ctx) {
     if (!ctx)
         return 0;
-    __unsafe_unretained VideoDecoder *decoder = (__bridge VideoDecoder*)ctx;
+    __unsafe_unretained MediaDecoder *decoder = (__bridge MediaDecoder*)ctx;
     return [decoder detectInterrupted];;
 }
 
 
-- (void)resetStatus:(VideoDecoderContext *)record {
+- (void)resetStatus:(MediaDecoderContext *)record {
     record.connectionRetry = 0;
     record.totalVideoFrameCount = 0;
     record.subscribeTimeout = SUBSCRIBE_VIDEO_DATA_TIME_OUT;
@@ -154,9 +154,9 @@ static int interruptCallback(void *ctx) {
 }
 
 
-- (VideoDecoderContext *)decoderCtx {
+- (MediaDecoderContext *)decoderCtx {
     if (!_decoderCtx) {
-        _decoderCtx = [[VideoDecoderContext alloc] init];
+        _decoderCtx = [[MediaDecoderContext alloc] init];
     }
     return _decoderCtx;
 }
@@ -287,7 +287,7 @@ static int interruptCallback(void *ctx) {
 
 - (void)closeFile{
     NSLog(@"Enter close file...");
-    VideoDecoderContext *decoderCtx = self.decoderCtx;
+    MediaDecoderContext *decoderCtx = self.decoderCtx;
     BuriedPoint *buriedPoint = decoderCtx.buriedPoint;
 
     if (buriedPoint.failOpenCode == 0) {
@@ -310,7 +310,7 @@ static int interruptCallback(void *ctx) {
     
 }
 
-- (void)closeAudioStream:(VideoDecoderContext *)ctx {
+- (void)closeAudioStream:(MediaDecoderContext *)ctx {
     ctx.audioStreamIndex = -1;
     if (_swrBuffer) {
         av_free(_swrBuffer);
@@ -333,7 +333,7 @@ static int interruptCallback(void *ctx) {
     
 }
 
-- (void)closeVideoStream:(VideoDecoderContext *)ctx {
+- (void)closeVideoStream:(MediaDecoderContext *)ctx {
     ctx.videoStreamIndex = -1;
     
     if (ctx.swsContext) {
@@ -357,7 +357,7 @@ static int interruptCallback(void *ctx) {
     CGFloat  decodedDuration = 0;
     BOOL     finished = NO;
     int ret;
-    VideoDecoderContext *decoderCtx = self.decoderCtx;
+    MediaDecoderContext *decoderCtx = self.decoderCtx;
     
     if (decoderCtx.videoStreamIndex == -1 && decoderCtx.audioStreamIndex == -1)
         return nil;
@@ -460,7 +460,7 @@ static AVPacket pktBuffer;
     int        numSamples;
     int        numElements;
     NSMutableData *pcmData;
-    VideoDecoderContext *ctx = self.decoderCtx;
+    MediaDecoderContext *ctx = self.decoderCtx;
     
     if (!frame->data[0])
         return nil;
@@ -505,7 +505,7 @@ static AVPacket pktBuffer;
 
 - (VideoFrame *)convertAVFrameToVideoFrame:(AVFrame *)frame{
     VideoFrame *videoFrame;
-    VideoDecoderContext *ctx = self.decoderCtx;
+    MediaDecoderContext *ctx = self.decoderCtx;
     if (!frame->data[0])
         return nil;
     videoFrame = [[VideoFrame alloc] init];
@@ -657,7 +657,7 @@ fail:
 }
 
 - (void)interrupt {
-    VideoDecoderContext *record = self.decoderCtx;
+    MediaDecoderContext *record = self.decoderCtx;
     record.subscribeTimeout = -1;
     record.interrupted = YES;
     record.isSubcribe = NO;

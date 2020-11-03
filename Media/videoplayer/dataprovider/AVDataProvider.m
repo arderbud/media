@@ -20,7 +20,7 @@
 @property (nonatomic, assign) BOOL opened;
 @end
 @implementation AVDataProvider {
-    VideoDecoder *_videoDecoder;
+    MediaDecoder *_MediaDecoder;
     
     pthread_attr_t  _decoderThreadAttr;
     pthread_mutex_t _bufferLock;
@@ -65,7 +65,7 @@ static void *prepareBufferThreadRoutine(void *arg) {
 }
 
 - (void)decodeFramesWithDuration:(CGFloat)duration {
-    NSArray *frames = [_videoDecoder decodeFramesWithMinDuration:duration error:nil];
+    NSArray *frames = [_MediaDecoder decodeFramesWithMinDuration:duration error:nil];
     if (frames.count) {
         for (FrameBase *frame in frames) {
             if (frame.type == FrameTypeVideo) {
@@ -113,8 +113,8 @@ static void *prepareBufferThreadRoutine(void *arg) {
         }
     }
     
-    _videoDecoder = [[VideoDecoder alloc] initWithFileURL:_fileURL];
-    ret = [_videoDecoder openFileWithOptions:options error:error];
+    _MediaDecoder = [[MediaDecoder alloc] initWithFileURL:_fileURL];
+    ret = [_MediaDecoder openFileWithOptions:options error:error];
     if (!ret) {
         return OPEN_FAILED;
     }
@@ -221,13 +221,13 @@ static void *prepareBufferThreadRoutine(void *arg) {
 - (BOOL)checkBufferValid {
     BOOL valid = NO;
     int leftVideoFrames,leftAudioFrames;
-    if (nil == _videoDecoder)
+    if (nil == _MediaDecoder)
         return NO;
     
-    leftVideoFrames = _videoDecoder.validVideo ? (int)_videoBuffer.count : 0;
-    leftAudioFrames = _videoDecoder.validAudio ? (int)_audioBuffer.count : 0;
+    leftVideoFrames = _MediaDecoder.validVideo ? (int)_videoBuffer.count : 0;
+    leftAudioFrames = _MediaDecoder.validAudio ? (int)_audioBuffer.count : 0;
     if (0 == leftAudioFrames /*|| 0 == leftVideoFrames*/) {
-        if ([_videoDecoder isEOF]) {
+        if ([_MediaDecoder isEOF]) {
             // Notify completion
             _completed = YES;
             NSLog(@"file is EOF!!");
@@ -250,27 +250,27 @@ static void *prepareBufferThreadRoutine(void *arg) {
 
 
 - (int)getAudioSampleRate {
-    return _videoDecoder ? [_videoDecoder sampleRate] : -1;
+    return _MediaDecoder ? [_MediaDecoder sampleRate] : -1;
 }
 
 - (int)getAudioChannels {
-    return _videoDecoder ? [_videoDecoder channels] : -1;
+    return _MediaDecoder ? [_MediaDecoder channels] : -1;
 }
 
 - (double)getVideoFPS {
-    return _videoDecoder ? [_videoDecoder fps] : 0;
+    return _MediaDecoder ? [_MediaDecoder fps] : 0;
 }
 
 - (int)getVideoFrameWidth {
-    return _videoDecoder ? [_videoDecoder frameWidth] : 0;
+    return _MediaDecoder ? [_MediaDecoder frameWidth] : 0;
 }
 
 - (int)getVideoFrameHeight {
-    return _videoDecoder ? [_videoDecoder frameHeight] : 0;
+    return _MediaDecoder ? [_MediaDecoder frameHeight] : 0;
 }
 
 - (double)getDuration {
-    return _videoDecoder ? [_videoDecoder duration] : 0;
+    return _MediaDecoder ? [_MediaDecoder duration] : 0;
 }
 
 - (BOOL)completed {

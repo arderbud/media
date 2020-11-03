@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B3612D425514FAB00D14445 /* ViewDrawImageOpenGLES.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3612D225514FAB00D14445 /* ViewDrawImageOpenGLES.m */; };
+		2B3612D825514FCB00D14445 /* ShaderOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3612D625514FCB00D14445 /* ShaderOperations.m */; };
+		2B5A2B05242EDF61002869F4 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A2B03242EDF61002869F4 /* MediaPlayerViewController.m */; };
+		2B8E3471254ABACD0065D0CA /* IMG_0297.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 2B8E3470254ABACD0065D0CA /* IMG_0297.JPG */; };
+		2B8E3478254AC0DA0065D0CA /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8E3477254AC0DA0065D0CA /* testImage.png */; };
 		A49E17A88E0F4EE00F5D7A79 /* libPods-Media.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3705B9E39C0A1658BECAB7F3 /* libPods-Media.a */; };
 		F00037892328EEA80098FC32 /* AudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F00037872328EEA80098FC32 /* AudioPlayerViewController.m */; };
 		F000378A2328EEA80098FC32 /* AudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F00037882328EEA80098FC32 /* AudioPlayerViewController.xib */; };
@@ -44,7 +49,7 @@
 		F0F3BFB8235B02F600E48BD9 /* PassthroughFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F3BFB7235B02F600E48BD9 /* PassthroughFilter.m */; };
 		F0F3BFBB235B1BA600E48BD9 /* ContrastEnhancerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F3BFBA235B1BA600E48BD9 /* ContrastEnhancerFilter.m */; };
 		F0F4E9C123669075001D5665 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F4E9C023669075001D5665 /* AudioRecorder.m */; };
-		F0F6C7F7236141A100DB349A /* VideoDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C7F6236141A100DB349A /* VideoDecoder.m */; };
+		F0F6C7F7236141A100DB349A /* MediaDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C7F6236141A100DB349A /* MediaDecoder.m */; };
 		F0F6C7FA2361434700DB349A /* AVDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C7F92361434700DB349A /* AVDataProvider.m */; };
 		F0F946B52320A7E8006CEE16 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C0C4D4231E696D0075B6F9 /* libmp3lame.a */; };
 		F0F946B72320B190006CEE16 /* party.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F0F946B62320B190006CEE16 /* party.mp4 */; };
@@ -64,6 +69,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B3612D225514FAB00D14445 /* ViewDrawImageOpenGLES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewDrawImageOpenGLES.m; sourceTree = "<group>"; };
+		2B3612D325514FAB00D14445 /* ViewDrawImageOpenGLES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDrawImageOpenGLES.h; sourceTree = "<group>"; };
+		2B3612D625514FCB00D14445 /* ShaderOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderOperations.m; sourceTree = "<group>"; };
+		2B3612D725514FCB00D14445 /* ShaderOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderOperations.h; sourceTree = "<group>"; };
+		2B5A2B02242EDF61002869F4 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
+		2B5A2B03242EDF61002869F4 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
+		2B8E3470254ABACD0065D0CA /* IMG_0297.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0297.JPG; sourceTree = "<group>"; };
+		2B8E3477254AC0DA0065D0CA /* testImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImage.png; sourceTree = "<group>"; };
 		3705B9E39C0A1658BECAB7F3 /* libPods-Media.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Media.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A836B3EC95ADF89675FDA5 /* Pods-Media.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.debug.xcconfig"; path = "Target Support Files/Pods-Media/Pods-Media.debug.xcconfig"; sourceTree = "<group>"; };
 		8D0FCE206B37272D1E3EFFC3 /* Pods-Media.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media.release.xcconfig"; path = "Target Support Files/Pods-Media/Pods-Media.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,8 +255,8 @@
 		F0F3BFBA235B1BA600E48BD9 /* ContrastEnhancerFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContrastEnhancerFilter.m; sourceTree = "<group>"; };
 		F0F4E9BF23669075001D5665 /* AudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		F0F4E9C023669075001D5665 /* AudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
-		F0F6C7F5236141A000DB349A /* VideoDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDecoder.h; sourceTree = "<group>"; };
-		F0F6C7F6236141A100DB349A /* VideoDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDecoder.m; sourceTree = "<group>"; };
+		F0F6C7F5236141A000DB349A /* MediaDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaDecoder.h; sourceTree = "<group>"; };
+		F0F6C7F6236141A100DB349A /* MediaDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaDecoder.m; sourceTree = "<group>"; };
 		F0F6C7F82361434700DB349A /* AVDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVDataProvider.h; sourceTree = "<group>"; };
 		F0F6C7F92361434700DB349A /* AVDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVDataProvider.m; sourceTree = "<group>"; };
 		F0F946B62320B190006CEE16 /* party.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = party.mp4; sourceTree = "<group>"; };
@@ -685,6 +698,10 @@
 		F03D689B2332439900BB605F /* opengl */ = {
 			isa = PBXGroup;
 			children = (
+				2B3612D325514FAB00D14445 /* ViewDrawImageOpenGLES.h */,
+				2B3612D225514FAB00D14445 /* ViewDrawImageOpenGLES.m */,
+				2B3612D725514FCB00D14445 /* ShaderOperations.h */,
+				2B3612D625514FCB00D14445 /* ShaderOperations.m */,
 				F03D689C233243C800BB605F /* RectangleView.h */,
 				F03D689D233243C800BB605F /* RectangleView.m */,
 				F0FA562823598DE7002FE6D4 /* TextureView.h */,
@@ -762,6 +779,8 @@
 		F0C0C4DB231E85CC0075B6F9 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				2B8E3477254AC0DA0065D0CA /* testImage.png */,
+				2B8E3470254ABACD0065D0CA /* IMG_0297.JPG */,
 				F0FEE4302355CC2400AB857E /* test.flv */,
 				F000378B2328F00A0098FC32 /* audio.m4a */,
 				F0F946B62320B190006CEE16 /* party.mp4 */,
@@ -788,6 +807,8 @@
 				F00037882328EEA80098FC32 /* AudioPlayerViewController.xib */,
 				F0F97062233A3560006D5DBD /* GeometryViewController.h */,
 				F0F97063233A3560006D5DBD /* GeometryViewController.m */,
+				2B5A2B02242EDF61002869F4 /* MediaPlayerViewController.h */,
+				2B5A2B03242EDF61002869F4 /* MediaPlayerViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -819,8 +840,8 @@
 		F0FC16DA234ED09C00A4C5DE /* dataprovider */ = {
 			isa = PBXGroup;
 			children = (
-				F0F6C7F5236141A000DB349A /* VideoDecoder.h */,
-				F0F6C7F6236141A100DB349A /* VideoDecoder.m */,
+				F0F6C7F5236141A000DB349A /* MediaDecoder.h */,
+				F0F6C7F6236141A100DB349A /* MediaDecoder.m */,
 				F0F6C7F82361434700DB349A /* AVDataProvider.h */,
 				F0F6C7F92361434700DB349A /* AVDataProvider.m */,
 			);
@@ -897,6 +918,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B8E3471254ABACD0065D0CA /* IMG_0297.JPG in Resources */,
 				F000378A2328EEA80098FC32 /* AudioPlayerViewController.xib in Resources */,
 				F0F946B72320B190006CEE16 /* party.mp4 in Resources */,
 				F0131EEC231E110200419831 /* LaunchScreen.storyboard in Resources */,
@@ -905,6 +927,7 @@
 				F0C0C4DD231E866D0075B6F9 /* test.pcm in Resources */,
 				F0FEE4312355CC2400AB857E /* test.flv in Resources */,
 				F0131EE9231E110200419831 /* Assets.xcassets in Resources */,
+				2B8E3478254AC0DA0065D0CA /* testImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,16 +967,19 @@
 				F0C0C4D8231E69CC0075B6F9 /* Mp3Endec.cpp in Sources */,
 				F03D689E233243C800BB605F /* RectangleView.m in Sources */,
 				F00F6A3A23701CA700BE7E1A /* ADCVPixelBufferTexture.m in Sources */,
+				2B5A2B05242EDF61002869F4 /* MediaPlayerViewController.m in Sources */,
 				F0F3BFBB235B1BA600E48BD9 /* ContrastEnhancerFilter.m in Sources */,
 				F0F3BFB8235B02F600E48BD9 /* PassthroughFilter.m in Sources */,
 				F0FEE42E235564F500AB857E /* AudioOutput.m in Sources */,
 				F0FA562A23598DE7002FE6D4 /* TextureView.m in Sources */,
 				F00037892328EEA80098FC32 /* AudioPlayerViewController.m in Sources */,
+				2B3612D825514FCB00D14445 /* ShaderOperations.m in Sources */,
 				F004121C231FC9B10058224B /* MediaDecomposer.cpp in Sources */,
 				F0C0C4DA231E6B140075B6F9 /* ViewController.mm in Sources */,
 				F0FB4C9623714E7E00AE0C89 /* ADImageOutput.m in Sources */,
 				F0FB4C9F23718D2200AE0C89 /* ADFrameBufferTexture2D.m in Sources */,
 				F0FB4C99237151E600AE0C89 /* ADCameraCapture.m in Sources */,
+				2B3612D425514FAB00D14445 /* ViewDrawImageOpenGLES.m in Sources */,
 				F0FB401C2358896B00C39F62 /* RenderPipeline.m in Sources */,
 				F0FB4C9C2371581000AE0C89 /* ADRenderPipeline.m in Sources */,
 				F0F4E9C123669075001D5665 /* AudioRecorder.m in Sources */,
@@ -963,7 +989,7 @@
 				F0FAD39F232782540090B602 /* AUGraphPlayer.m in Sources */,
 				F0131EEF231E110200419831 /* main.m in Sources */,
 				F0FA562D2359C1DF002FE6D4 /* RGBAFrameRender.m in Sources */,
-				F0F6C7F7236141A100DB349A /* VideoDecoder.m in Sources */,
+				F0F6C7F7236141A100DB349A /* MediaDecoder.m in Sources */,
 				F0F97064233A3560006D5DBD /* GeometryViewController.m in Sources */,
 				F0131EE1231E110000419831 /* AppDelegate.m in Sources */,
 			);
@@ -1101,7 +1127,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8YX2VC5V5;
+				DEVELOPMENT_TEAM = H2XAC8YK8C;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1122,7 +1148,7 @@
 					"$(PROJECT_DIR)/Media/3rd/fdk-aac-ios/lib",
 					"$(PROJECT_DIR)/Media/3rd/x264-ios/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arderbud.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arderbud.utill;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1134,7 +1160,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = U8YX2VC5V5;
+				DEVELOPMENT_TEAM = H2XAC8YK8C;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1155,7 +1181,7 @@
 					"$(PROJECT_DIR)/Media/3rd/fdk-aac-ios/lib",
 					"$(PROJECT_DIR)/Media/3rd/x264-ios/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arderbud.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arderbud.utill;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

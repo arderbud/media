@@ -106,7 +106,7 @@ OSStatus inputRenderCallback(void *inRefCon,
     clientStreamFormat.mBitsPerChannel   = 8 * _bytesPerSample;
     clientStreamFormat.mChannelsPerFrame = _channels;
     clientStreamFormat.mSampleRate       = _sampleRate;
-    AudioUnitSetProperty(_convertUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &clientStreamFormat, sizeof(clientStreamFormat));
+    AudioUnitSetProperty(_convertUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &clientStreamFormat, sizeof(clientStreamFormat));// 指定格式
     
     stereoStreamFormat.mFormatID         = kAudioFormatLinearPCM;
     stereoStreamFormat.mFormatFlags      = kAudioFormatFlagsNativeFloatPacked | kAudioFormatFlagIsNonInterleaved;
@@ -116,7 +116,7 @@ OSStatus inputRenderCallback(void *inRefCon,
     stereoStreamFormat.mBitsPerChannel   = 8 *stereoBytesPerSample;
     stereoStreamFormat.mChannelsPerFrame = 2;
     stereoStreamFormat.mSampleRate       = _sampleRate;
-    AudioUnitSetProperty(_convertUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &stereoStreamFormat, sizeof(stereoStreamFormat));
+    AudioUnitSetProperty(_convertUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &stereoStreamFormat, sizeof(stereoStreamFormat)); // 指定格式
     
 
 }
@@ -134,7 +134,8 @@ OSStatus inputRenderCallback(void *inRefCon,
         int needSize = inNumberFrames * _bytesPerSample * _channels;
         if (needSize > PAGE_SIZE)
             _outData = realloc(_outData, needSize);
-        [_dataSource fillAudioData:_outData bytesPerSample:_bytesPerSample nbFrames:inNumberFrames nbChannels:_channels];
+        [_dataSource fillAudioData:_outData nbFrames:inNumberFrames nbChannels:_channels];
+        // 需要数据
         memcpy((UInt8 *)ioData->mBuffers[0].mData, (UInt8 *)_outData, ioData->mBuffers[0].mDataByteSize);
         return noErr;
     } else {
