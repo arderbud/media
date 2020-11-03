@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B3612D425514FAB00D14445 /* ViewDrawImageOpenGLES.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3612D225514FAB00D14445 /* ViewDrawImageOpenGLES.m */; };
 		2B3612D825514FCB00D14445 /* ShaderOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3612D625514FCB00D14445 /* ShaderOperations.m */; };
+		2B3612DC255157C400D14445 /* MvpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3612DB255157C400D14445 /* MvpView.m */; };
 		2B5A2B05242EDF61002869F4 /* MediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A2B03242EDF61002869F4 /* MediaPlayerViewController.m */; };
 		2B8E3471254ABACD0065D0CA /* IMG_0297.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 2B8E3470254ABACD0065D0CA /* IMG_0297.JPG */; };
 		2B8E3478254AC0DA0065D0CA /* testImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B8E3477254AC0DA0065D0CA /* testImage.png */; };
@@ -73,6 +74,8 @@
 		2B3612D325514FAB00D14445 /* ViewDrawImageOpenGLES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDrawImageOpenGLES.h; sourceTree = "<group>"; };
 		2B3612D625514FCB00D14445 /* ShaderOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShaderOperations.m; sourceTree = "<group>"; };
 		2B3612D725514FCB00D14445 /* ShaderOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderOperations.h; sourceTree = "<group>"; };
+		2B3612DA255157C400D14445 /* MvpView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MvpView.h; sourceTree = "<group>"; };
+		2B3612DB255157C400D14445 /* MvpView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MvpView.m; sourceTree = "<group>"; };
 		2B5A2B02242EDF61002869F4 /* MediaPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaPlayerViewController.h; sourceTree = "<group>"; };
 		2B5A2B03242EDF61002869F4 /* MediaPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaPlayerViewController.m; sourceTree = "<group>"; };
 		2B8E3470254ABACD0065D0CA /* IMG_0297.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0297.JPG; sourceTree = "<group>"; };
@@ -702,6 +705,8 @@
 				2B3612D225514FAB00D14445 /* ViewDrawImageOpenGLES.m */,
 				2B3612D725514FCB00D14445 /* ShaderOperations.h */,
 				2B3612D625514FCB00D14445 /* ShaderOperations.m */,
+				2B3612DA255157C400D14445 /* MvpView.h */,
+				2B3612DB255157C400D14445 /* MvpView.m */,
 				F03D689C233243C800BB605F /* RectangleView.h */,
 				F03D689D233243C800BB605F /* RectangleView.m */,
 				F0FA562823598DE7002FE6D4 /* TextureView.h */,
@@ -981,6 +986,7 @@
 				F0FB4C99237151E600AE0C89 /* ADCameraCapture.m in Sources */,
 				2B3612D425514FAB00D14445 /* ViewDrawImageOpenGLES.m in Sources */,
 				F0FB401C2358896B00C39F62 /* RenderPipeline.m in Sources */,
+				2B3612DC255157C400D14445 /* MvpView.m in Sources */,
 				F0FB4C9C2371581000AE0C89 /* ADRenderPipeline.m in Sources */,
 				F0F4E9C123669075001D5665 /* AudioRecorder.m in Sources */,
 				F0F6C7FA2361434700DB349A /* AVDataProvider.m in Sources */,

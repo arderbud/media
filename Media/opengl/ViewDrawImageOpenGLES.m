@@ -316,7 +316,7 @@ exitPoint:
     glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    
+  
 //    const GLfloat mvpMatrix[] = {
 //        2, 0,    0, 0,
 //        0, 2,    0, 0,

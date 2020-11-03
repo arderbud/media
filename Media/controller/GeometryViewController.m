@@ -9,6 +9,7 @@
 #import "GeometryViewController.h"
 #import "RectangleView.h"
 #import "ViewDrawImageOpenGLES.h"
+#import "MvpView.h"
 @interface GeometryViewController ()
 
 @end
@@ -16,6 +17,7 @@
 @implementation GeometryViewController {
     RectangleView *_rectangleView;
     ViewDrawImageOpenGLES *_viewDrawImage;
+    MvpView *_mvpView;
 }
 
 - (instancetype)init
@@ -30,9 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _rectangleView = [[RectangleView alloc] initWithFrame:CGRectMake(64, 100, 200, 283)];
-    [_rectangleView draw];
-    [self.view addSubview:_rectangleView];
+    _mvpView = [[MvpView alloc] initWithFrame:CGRectMake(64, 100, 200, 283)];
+    [_mvpView drawImage:[UIImage imageNamed:@"testImage"]];
+    [self.view addSubview:_mvpView];
     
 //    _viewDrawImage = [[ViewDrawImageOpenGLES alloc] initWithFrame:CGRectMake(64, 100, 200, 283)];
 //    [self.view addSubview:_viewDrawImage];
