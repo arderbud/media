@@ -83,7 +83,7 @@ static NSString *const kIESGLesTextureRgbaFragString = SHADER_STRING
     [eaglLayer setOpaque:YES];
     [eaglLayer setDrawableProperties:[NSDictionary dictionaryWithObjectsAndKeys:
                                       [NSNumber numberWithBool:NO],kEAGLDrawablePropertyRetainedBacking,
-                                      kEAGLColorFormatRGBA8,kEAGLDrawablePropertyColorFormat, nil]];
+                                      kEAGLColorFormatRGB565,kEAGLDrawablePropertyColorFormat, nil]];
     
     glGenFramebuffers(1, &_frameBuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
@@ -238,6 +238,7 @@ exitPoint:
     
 }
 
+/*
 - (void)renderVertices {
     GLuint posAttrIndex,samCoordAttribIndex;
     GLfloat texCoords[] = {
@@ -264,6 +265,7 @@ exitPoint:
     // 就直接绘制顶点即可, 具体的绘制方式就与纹理坐标和纹理数据没有关系了。
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
+ */
 
 - (GLuint)setupTexture:(UIImage *)image {
     CGImageRef cgImageRef = [image CGImage];
